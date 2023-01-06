@@ -1,10 +1,7 @@
 import './App.css';
 import TodoList from './TodoList.js';
-
 import { v4 as uuidv4 } from 'uuid';
-
 import React, { useRef, useState } from 'react';
-
 
 export default function App() {
 
@@ -35,7 +32,6 @@ export default function App() {
 
     function handleClear(e) {
         e.preventDefault();
-
     }
 
     return (
@@ -50,7 +46,6 @@ export default function App() {
                 <button type='submit'>Add</button>
                 {/* <input ref={todoDesceRef} placeholder='description'/> */}
             </form>
-
 
             <div>{todos.length} tasks left</div> 
         </>
