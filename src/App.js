@@ -36,23 +36,10 @@ export default function App() {
         setTodos(newTodos)
     }
 
-    function handleSubmit(e) {
-        e.preventDefault();
-        console.log("Handle");
-
-    }
-
-    function handleClear(e) {
-        e.preventDefault();
-    }
-
     return (
         <>
             <TodoList todos = {todos} toggleCompleted = {toggleCompleted}/>
-            {/* <input type='text' ref={todoNameRef}></input>
-            <button onClick={handleAddTodo}>Add</button> */}
-            {/* <button onClick={handleClear}>Clear</button> */}
-
+            
             <form onSubmit={handleAddTodo}>
                 <input ref={todoNameRef} placeholder='name'/>
                 <button type='submit'>Add</button>
