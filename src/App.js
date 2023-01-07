@@ -29,6 +29,13 @@ export default function App() {
         todoDesceRef.current.value = null;
     }
 
+    function toggleCompleted(id) {
+        const newTodos = [...todos]
+        const todo = newTodos.find(todo => todo.id === id)
+        todo.complete = !todo.complete
+        setTodos(newTodos)
+    }
+
     function handleSubmit(e) {
         e.preventDefault();
         console.log("Handle");
@@ -41,7 +48,7 @@ export default function App() {
 
     return (
         <>
-            <TodoList todos = {todos}/>
+            <TodoList todos = {todos} toggleCompleted = {toggleCompleted}/>
             {/* <input type='text' ref={todoNameRef}></input>
             <button onClick={handleAddTodo}>Add</button> */}
             {/* <button onClick={handleClear}>Clear</button> */}
@@ -52,7 +59,7 @@ export default function App() {
                 <input ref={todoDesceRef} placeholder='description'/>
             </form>
 
-            <div>{todos.length} tasks left</div> 
+            <div>{todos.filter(todo => !todo.complete).length} tasks left</div>
         </>
 
     )
