@@ -1,14 +1,36 @@
 import './App.css';
 import TodoList from './TodoList.js';
 import { v4 as uuidv4 } from 'uuid';
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+
+
 
 export default function App() {
+
+    const LOCAL_STORAGE_KEY = "todoApp.todos"
+
 
     const todoNameRef = useRef();
     const todoDesceRef = useRef();
 
-    const [todos, setTodos] = useState([])
+    const [todos, setTodos] = useState([]);
+
+
+    useEffect(() => {
+        console.log("y")
+        const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
+        const storedTodos = JSON.parse(saved)
+        if (storedTodos) {
+            console.log("STORED");
+            setTodos(storedTodos);
+        }
+        // return storedTodos || ""
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos))
+        console.log("run")
+    }, [todos]);
 
     function handleAddTodo(e) {
         e.preventDefault();
@@ -46,6 +68,7 @@ export default function App() {
                 <button type='submit'>Add</button>
                 {/* <input ref={todoDesceRef} placeholder='description'/> */}
             </form>
+
 
             <div>{todos.length} tasks left</div> 
         </>
