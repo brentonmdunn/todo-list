@@ -13,15 +13,20 @@ export default function App() {
     function handleAddTodo(e) {
         e.preventDefault();
         const name = todoNameRef.current.value;
+        const description = todoDesceRef.current.value;
         console.log(name);
         if (name === "") {
             return;
         }
         setTodos(prevTodos => {
-            return[...prevTodos, {id: uuidv4(), name: name, complete: false}]
+            return[...prevTodos, {id: uuidv4(), 
+                    name: name, 
+                    complete: false, 
+                    description: description}]
         })
 
         todoNameRef.current.value = null; 
+        todoDesceRef.current.value = null;
     }
 
     function handleSubmit(e) {
@@ -44,7 +49,7 @@ export default function App() {
             <form onSubmit={handleAddTodo}>
                 <input ref={todoNameRef} placeholder='name'/>
                 <button type='submit'>Add</button>
-                {/* <input ref={todoDesceRef} placeholder='description'/> */}
+                <input ref={todoDesceRef} placeholder='description'/>
             </form>
 
             <div>{todos.length} tasks left</div> 
