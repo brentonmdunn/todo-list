@@ -9,6 +9,7 @@ export default function App() {
     const todoDesceRef = useRef();
 
     const [todos, setTodos] = useState([])
+    const [show, setShow] = useState(true)
 
     function handleAddTodo(e) {
         e.preventDefault();
@@ -47,6 +48,14 @@ export default function App() {
             </form>
 
             <div>{todos.filter(todo => !todo.complete).length} tasks left</div>
+        
+            <div>
+                <button onClick={() => setShow(!show)}>TOGGLE BUTTON</button>
+                {
+                    show?<h1>TEST</h1>:null
+                }
+            </div>
+        
         </>
 
     )
