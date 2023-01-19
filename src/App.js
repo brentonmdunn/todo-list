@@ -40,20 +40,26 @@ export default function App() {
     return (
         <>
             <TodoList todos = {todos} toggleCompleted = {toggleCompleted}/>
-            
-            <form onSubmit={handleAddTodo}>
-                <input ref={todoNameRef} placeholder='name'/>
-                <button type='submit'>Add</button>
-                <input ref={todoDesceRef} placeholder='description'/>
-            </form>
+            <button onClick={() => setShow(!show)}>+</button>
+            <div>
+                {show?
+                <form onSubmit={handleAddTodo}>
+                    <input ref={todoNameRef} placeholder='name'/>
+                    <button type='submit'>Add</button>
+                    <input ref={todoDesceRef} placeholder='description'/>
+                </form>:null
+                
+                }   
+            </div>
+
 
             <div>{todos.filter(todo => !todo.complete).length} tasks left</div>
         
             <div>
-                <button onClick={() => setShow(!show)}>TOGGLE BUTTON</button>
+                {/* <button onClick={() => setShow(!show)}>TOGGLE BUTTON</button>
                 {
                     show?<h1>TEST</h1>:null
-                }
+                } */}
             </div>
         
         </>
